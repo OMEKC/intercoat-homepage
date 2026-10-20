@@ -1,4 +1,4 @@
-/* ==========================================================================
+/*fluid*//* ==========================================================================
    Intercoat — approved concept 1, client edits.
    Loaded last. Motion notes (all short, none decorative):
    - Hero squares: faster intro and waves (hero4.js).
@@ -11,23 +11,22 @@
 
 /* ---------- vertical rhythm, as in the edited mockup ---------- */
 @media(min-width:901px){
-.section-heading{margin-bottom:50px}
-#about .about-intro{margin-bottom:50px}
-#series .section-heading{margin-bottom:46px}
-#news{padding-bottom:72px}
-#nature{padding-bottom:72px}
-#contact{padding-top:72px;padding-bottom:72px}
+.section-heading{margin-bottom:3.125rem}
+#about .about-intro{margin-bottom:3.125rem}
+#series .section-heading{margin-bottom:2.875rem}
+#news{padding-bottom:4.5rem}
+#nature{padding-bottom:4.5rem}
+#contact{padding-top:4.5rem;padding-bottom:4.5rem}
 }
 
 /* ---------- news cards: smaller photo, type and padding ---------- */
-.news-card>.photo{height:192px}
-#news .news-content{padding:28px 24px;gap:20px}
-#news .news-content h3{font-size:20px;line-height:27px}
+.news-card>.photo{height:12rem}
+#news .news-content{padding:1.75rem 1.5rem;gap:1.25rem}
+#news .news-content h3{font-size:1.25rem;line-height:1.6875rem}
 #news .news-card,#news .news-content{display:flex;flex-direction:column}
 #news .news-content{flex:1}
 #news .news-read{margin-top:auto}
 .ic-track{transition:transform .8s cubic-bezier(.33,1,.68,1)}
-.ic-bar b{transition:none}
 @media(prefers-reduced-motion:reduce){.ic-track{transition:none}}
 
 /* ---------- technical audit: light sky band, dark type ---------- */
@@ -50,11 +49,11 @@
 .process-step summary{cursor:pointer}
 .process-step summary .plus{transition:color .2s ease,transform .2s ease}
 .process-step summary:hover,.process-step summary:focus-visible{color:var(--ic-orange)}
-.process-step summary:focus-visible{outline:2px solid var(--ic-orange);outline-offset:4px}
+.process-step summary:focus-visible{outline:0.125rem solid var(--ic-orange);outline-offset:0.25rem}
 
 /* ---------- links and buttons: one hover for all ---------- */
 .text-link,.company-toggle{position:relative;transition:color .25s ease}
-.company-toggle::after,.document-link::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--ic-orange);transform:scaleX(0);transform-origin:left center;transition:transform .35s var(--ic-ease)}
+.company-toggle::after,.document-link::after{content:"";position:absolute;left:0;right:0;height:0.125rem;background:var(--ic-orange);transform:scaleX(0);transform-origin:left center;transition:transform .35s var(--ic-ease)}
 .company-toggle::after{bottom:-1px}
 .document-link{position:relative}
 .document-link::after{top:-1px}
@@ -62,52 +61,52 @@
 .text-link:hover,.text-link:focus-visible,.company-toggle:hover,.company-toggle:focus-visible,.document-link:hover,.document-link:focus-visible{color:var(--ic-orange)!important}
 .text-link:hover svg,.company-toggle:hover svg,.document-link:hover svg,.text-link:focus-visible svg,.company-toggle:focus-visible svg,.document-link:focus-visible svg{color:var(--ic-orange)}
 .company-toggle svg,.document-link svg{transition:color .25s ease}
-.company-toggle:focus-visible,.text-link:focus-visible,.document-link:focus-visible{outline:2px solid var(--ic-orange);outline-offset:4px}
+.company-toggle:focus-visible,.text-link:focus-visible,.document-link:focus-visible{outline:0.125rem solid var(--ic-orange);outline-offset:0.25rem}
 @media(prefers-reduced-motion:reduce){.company-toggle::after,.document-link::after{transition:none}}
 
 /* ---------- contact form copy ---------- */
-.contact-form .form-intro{margin:-6px 0 2px;font-size:15px;line-height:22px;color:#626D7A}
-.contact-form .form-consent{font-size:13px;line-height:20px;color:#626D7A;max-width:none}
-.contact-form .form-consent a{color:var(--ic-blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .25s ease}
+.contact-form .form-intro{margin:-0.375rem 0 0.125rem;font-size:0.9375rem;line-height:1.375rem;color:#626D7A}
+.contact-form .form-consent{font-size:0.8125rem;line-height:1.25rem;color:#626D7A;max-width:none}
+.contact-form .form-consent a{color:var(--ic-blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.1875rem;transition:color .25s ease}
 .contact-form .form-consent a:hover,.contact-form .form-consent a:focus-visible{color:var(--ic-orange)}
-.contact-form .submit-row{margin-top:2px}
+.contact-form .submit-row{margin-top:0.125rem}
 .contact-form .submit-row .btn{flex:none}
 
 /* ---------- footer ---------- */
 @media(min-width:901px){
-#footer{padding-top:64px;padding-bottom:29px}
-#footer .footer-bottom{padding-top:22px}
+#footer{padding-top:4rem;padding-bottom:1.8125rem}
+#footer .footer-bottom{padding-top:1.375rem}
 }
 
 /* ---------- mobile (as in the 360 mockup) ---------- */
 @media(max-width:600px){
-:root{--text-h2:28px}
-h2,.section-heading h2{font-size:28px;line-height:31px}
+:root{--text-h2:1.75rem}
+h2,.section-heading h2{font-size:1.75rem;line-height:1.9375rem}
 #news .ic-track>*{flex-basis:92%!important}
-.news-card>.photo{height:165px}
-#news .news-content{padding:20px 14px;gap:14px}
-#news .news-content h3{font-size:17px;line-height:22px}
-#news .news-content p{font-size:12.5px;line-height:18px}
-#news .news-read{font-size:14px}
-.ic-btns button{width:40px;height:40px}
+.news-card>.photo{height:10.3125rem}
+#news .news-content{padding:1.25rem 0.875rem;gap:0.875rem}
+#news .news-content h3{font-size:1.0625rem;line-height:1.375rem}
+#news .news-content p{font-size:0.7812rem;line-height:1.125rem}
+#news .news-read{font-size:0.875rem}
+.ic-btns button{width:2.5rem;height:2.5rem}
 #about .about-actions{border-top:0}
-#about .about-text p.about-lead{font-size:20px;line-height:1.22}
+#about .about-text p.about-lead{font-size:1.25rem;line-height:1.22}
 }
 @media(max-width:600px){
-#about .about-text p.about-lead{font-size:24px;line-height:1.2}
-#news .news-content{padding:20px 14px 24px;gap:22px}
-#news .news-content h3{font-size:18px;line-height:23px}
-#news .news-content p{font-size:12px;line-height:18px}
+#about .about-text p.about-lead{font-size:1.5rem;line-height:1.2}
+#news .news-content{padding:1.25rem 0.875rem 1.5rem;gap:1.375rem}
+#news .news-content h3{font-size:1.125rem;line-height:1.4375rem}
+#news .news-content p{font-size:0.75rem;line-height:1.125rem}
 }
 @media(max-width:600px){
-#news,#about,#certs,#custom,#apps,#tech,#series,#nature{padding-top:52px}
-#tech .section-heading{gap:12px}
-#tech .section-heading>p{max-width:240px}
-#contact{padding-top:45px;padding-bottom:72px}
-#footer{padding-top:40px}
-#footer .footer-brand{margin-bottom:47px}
-#footer .footer-bottom{padding-top:28px}
-#footer{padding-bottom:58px}
+#news,#about,#certs,#custom,#apps,#tech,#series,#nature{padding-top:3.25rem}
+#tech .section-heading{gap:0.75rem}
+#tech .section-heading>p{max-width:15rem}
+#contact{padding-top:2.8125rem;padding-bottom:4.5rem}
+#footer{padding-top:2.5rem}
+#footer .footer-brand{margin-bottom:2.9375rem}
+#footer .footer-bottom{padding-top:1.75rem}
+#footer{padding-bottom:3.625rem}
 .process-step>.chips-p,.process-step .chips-p{margin-left:0}
 }
 @media(max-width:600px){
@@ -117,3 +116,42 @@ h2,.section-heading h2{font-size:28px;line-height:31px}
 /* ---------- contact: the left column now carries the form title and intro; the copies inside the form
    stay in the markup only for the popup, which has no left column ---------- */
 #contact .contact-form>h3,#contact .contact-form>.form-intro{display:none}
+
+/* ==========================================================================
+   FLUID SCALE (wide screens). All lengths in the stylesheets are in rem.
+   Up to 1440 px wide, 1 rem = 16 px, so the layout is exactly the 1440 design
+   and between 901 and 1440 the grid, gaps and images flex with the width.
+   From 1441 px the root size grows with the window (1 rem = width / 90), so
+   the whole page keeps the 1440 proportions on 1680, 1920, 2560 and so on,
+   as in the 1920 mockup. It is capped at 2560 px; wider windows just get
+   wider columns. Mobile (up to 600 px) is untouched.
+   ========================================================================== */
+@media(min-width:1441px){
+html{font-size:calc(100vw/90)}
+svg.arr,.ic-btns svg{width:1.375rem;height:1rem}
+svg[width="18"]{width:1.125rem;height:1.125rem}
+svg[width="12"]{width:.75rem;height:.75rem}
+svg.plus{width:1.25rem;height:1.25rem}
+svg.doc-ic{width:1.375rem;height:1.375rem}
+}
+@media(min-width:2560px){html{font-size:28.4444px}}
+
+/* ==========================================================================
+   Round 3 edits (1440 mockup): taller news photos, slimmer About block.
+   ========================================================================== */
+@media(min-width:601px){
+#news .section-heading{margin-bottom:2.125rem}
+.news-card>.photo{height:13.6875rem}
+#news .news-content{padding:1.75rem}
+#news .news-content h3{font-size:1.225rem;line-height:1.625rem}
+#about .about-text p.about-lead{font-size:clamp(1.25rem,1.7639vw,1.5875rem);line-height:1.42}
+}
+@media(min-width:901px){
+#about .company-visual{flex:0 0 29.2%!important;width:29.2%!important;min-height:0}
+#about .company-side{gap:1.25rem}
+}
+@media(min-width:901px){#about .about-text p.about-lead{max-width:47.5rem}}
+/* Round 4: header fits at every width (hamburger up to 1160, fluid nav gap up to 1440) */
+@media(min-width:901px) and (max-width:1160px){.nav{display:none}.menu-trigger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.375rem;width:2.75rem;height:2.75rem}.menu-trigger i{display:block;width:1.25rem;height:1px;background:#FEFEFE}.menu-trigger[aria-expanded=true] i:first-child{transform:translateY(.2188rem) rotate(45deg)}.menu-trigger[aria-expanded=true] i:last-child{transform:translateY(-.2188rem) rotate(-45deg)}}
+@media(min-width:1251px) and (max-width:1439px){.nav{gap:calc(1rem + (100vw - 1250px)*.126)}}
+@media(max-width:1100px){#about .about-heading{flex:1 1 auto;min-width:0;max-width:100%}}

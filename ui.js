@@ -163,3 +163,48 @@
 b.setAttribute('aria-expanded','false');
 b.addEventListener('click',function(){var o=h.classList.toggle('menu-open');b.setAttribute('aria-expanded',o?'true':'false')});
 h.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){h.classList.remove('menu-open');b.setAttribute('aria-expanded','false')})});})();
+/* ---------- News slider: finite, one card per step, arrows and swipe; no autoplay, no loop ---------- */
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-ic-slider]'), function (root) {
+    var vp = root.querySelector('.ic-viewport'), tr = root.querySelector('.ic-track');
+    var cards = [].slice.call(tr.children);
+    var ctrl = root;
+    var prev = ctrl.querySelector('.ic-prev'), next = ctrl.querySelector('.ic-next');
+    var cnt = ctrl.querySelector('.ic-count'), bar = ctrl.querySelector('.ic-bar b');
+    var i = 0;
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function m() {
+      var g = parseFloat(getComputedStyle(tr).columnGap) || 0;
+      var w = cards[0].getBoundingClientRect().width, step = w + g;
+      var total = cards.length * w + (cards.length - 1) * g;
+      var max = Math.max(0, total - vp.clientWidth);
+      var vis = Math.max(1, Math.round((vp.clientWidth + g) / step));
+      return { step: step, max: max, vis: vis, last: Math.ceil(max / step - 0.001) };
+    }
+    function go(k) {
+      var s = m(); i = Math.max(0, Math.min(k, s.last));
+      var off = Math.min(i * s.step, s.max);
+      tr.style.transform = 'translateX(' + (-off) + 'px)';
+      prev.disabled = i <= 0; next.disabled = i >= s.last;
+      var first = off >= s.max - 1 ? Math.max(1, cards.length - s.vis + 1) : i + 1;
+      var lastN = Math.min(cards.length, first + s.vis - 1);
+      if (cnt) cnt.textContent = s.vis > 1 ? pad(first) + '\u2013' + pad(lastN) + ' / ' + pad(cards.length) : pad(first) + ' / ' + pad(cards.length);
+      if (bar) { bar.style.left = ((first - 1) / cards.length * 100) + '%'; bar.style.width = (s.vis / cards.length * 100) + '%'; }
+      cards.forEach(function (c, idx) {
+        var on = idx + 1 >= first && idx + 1 <= lastN;
+        if (on) { c.removeAttribute('inert'); c.removeAttribute('aria-hidden'); } else { c.setAttribute('inert', ''); c.setAttribute('aria-hidden', 'true'); }
+      });
+    }
+    prev.addEventListener('click', function () { go(i - 1); });
+    next.addEventListener('click', function () { go(i + 1); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { go(i - 1); } else if (e.key === 'ArrowRight') { go(i + 1); }
+    });
+    var x0 = null;
+    vp.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') x0 = e.clientX; });
+    vp.addEventListener('pointerup', function (e) { if (x0 === null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) go(dx < 0 ? i + 1 : i - 1); });
+    vp.addEventListener('pointercancel', function () { x0 = null; });
+    window.addEventListener('resize', function () { go(i); });
+    go(0);
+  });
+})();

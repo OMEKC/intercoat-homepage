@@ -25,7 +25,7 @@
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     cv.style.width = W + 'px'; cv.style.height = H + 'px';
-    pitch = W < 700 ? 30 : W < 1100 ? 38 : 46;
+    pitch = (W < 700 ? 30 : W < 1100 ? 38 : 46) * Math.min(Math.max(1, W / 1440), 2560 / 1440); /* squares grow with the page on wide screens */
     cols = Math.ceil(W / pitch) + 1; rows = Math.ceil(H / pitch) + 1;
     draw(still ? 6.5 : SPEED * (performance.now() - t0) / 1000, 1);
   }
