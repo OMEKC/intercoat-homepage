@@ -3,6 +3,7 @@
    - every 4.5 s the strip slides left by exactly one card (0.8 s, ease-out, transform only);
    - the first cards are cloned after the last one, so after card 4 card 1 simply slides in;
      the strip is reset to its start invisibly while the clones are on screen, there is no jump back;
+   - (autoplay is currently off; arrows, keys and swipe still loop seamlessly)
    - autoplay pauses on hover, keyboard focus, when the block is off screen or the tab is hidden;
    - with "reduce motion" there is no autoplay; the arrows still work (without sliding animation);
    - arrows, swipe and the Left/Right keys move the strip by one card as well. */
@@ -30,7 +31,7 @@
 
     var i = 0, busy = false, timer = null, snapTimer = null;
     var paused = { hover: false, focus: false, hidden: document.hidden, away: true };
-    var auto = !reduced && !params.has('static');
+    var auto = false; /* autoplay switched off on request; set to !reduced && !params.has('static') to bring it back */
 
     function pad(n) { return (n < 10 ? '0' : '') + n; }
     function geom() {

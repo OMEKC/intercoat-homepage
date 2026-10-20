@@ -111,3 +111,7 @@ h2,.section-heading h2{font-size:28px;line-height:31px}
 @media(max-width:600px){
 #series .section-heading{margin-bottom:0}
 }
+
+/* ---------- contact: the left column now carries the form title and intro; the copies inside the form
+   stay in the markup only for the popup, which has no left column ---------- */
+#contact .contact-form>h3,#contact .contact-form>.form-intro{display:none}
