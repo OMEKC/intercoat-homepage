@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Intercoat — approved concept 1, client edits.
+   Loaded last. Motion notes (all short, none decorative):
+   - Hero squares: faster intro and waves (hero4.js).
+   - News strip: one card slides left every 4.5 s, endless (news.js).
+   - Links and buttons: on hover the text and arrow turn orange and a 2 px orange
+     line draws left to right under the link (.35 s). Same behaviour everywhere.
+   - Accordion (technical audit): on hover the heading and the plus / cross turn orange. No movement.
+   ========================================================================== */
+:root{--ic-orange:#D75C32;--sky-acc:#1C6496}
+
+/* ---------- vertical rhythm, as in the edited mockup ---------- */
+@media(min-width:901px){
+.section-heading{margin-bottom:50px}
+#about .about-intro{margin-bottom:50px}
+#series .section-heading{margin-bottom:46px}
+#news{padding-bottom:72px}
+#nature{padding-bottom:72px}
+#contact{padding-top:72px;padding-bottom:72px}
+}
+
+/* ---------- news cards: smaller photo, type and padding ---------- */
+.news-card>.photo{height:192px}
+#news .news-content{padding:28px 24px;gap:20px}
+#news .news-content h3{font-size:20px;line-height:27px}
+#news .news-read{margin-top:0}
+.ic-track{transition:transform .8s cubic-bezier(.33,1,.68,1)}
+.ic-bar b{transition:none}
+@media(prefers-reduced-motion:reduce){.ic-track{transition:none}}
+
+/* ---------- technical audit: light sky band, dark type ---------- */
+#tech{--tint:#E0EEF6;--acc:var(--sky-acc)}
+#tech .section-n{background:var(--sky-acc);color:#FEFEFE}
+#tech .section-label{color:var(--sky-acc)}
+.section-technical{color:var(--ic-navy)}
+.section-technical .section-heading>p{color:#6E7681}
+.tech-process .audit-copy p,.tech-process .audit-copy p:first-child{color:var(--ic-navy)}
+.tech-process .audit-copy p:not(:first-child){color:#3B4249}
+.process{border-bottom:1px solid rgba(15,31,56,.22)}
+.process-step{border-top:1px solid rgba(15,31,56,.22)}
+.process-step summary{color:var(--ic-navy);transition:color .2s ease}
+.process-step h3{color:inherit}
+.step-number{color:var(--sky-acc)}
+.process-step>p{color:#3B4249}
+#tech .chips-p .pill{background:transparent;border:1px solid var(--sky-acc);color:var(--sky-acc)}
+.tech-process .text-link{color:var(--ic-navy)}
+/* accordion hover: it is a control, so it answers */
+.process-step summary{cursor:pointer}
+.process-step summary .plus{transition:color .2s ease,transform .2s ease}
+.process-step summary:hover,.process-step summary:focus-visible{color:var(--ic-orange)}
+.process-step summary:focus-visible{outline:2px solid var(--ic-orange);outline-offset:4px}
+
+/* ---------- links and buttons: one hover for all ---------- */
+.text-link,.company-toggle{position:relative;transition:color .25s ease}
+.company-toggle::after,.document-link::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--ic-orange);transform:scaleX(0);transform-origin:left center;transition:transform .35s var(--ic-ease)}
+.company-toggle::after{bottom:-1px}
+.document-link{position:relative}
+.document-link::after{top:-1px}
+.company-toggle:hover::after,.company-toggle:focus-visible::after,.document-link:hover::after,.document-link:focus-visible::after{transform:scaleX(1)}
+.text-link:hover,.text-link:focus-visible,.company-toggle:hover,.company-toggle:focus-visible,.document-link:hover,.document-link:focus-visible{color:var(--ic-orange)!important}
+.text-link:hover svg,.company-toggle:hover svg,.document-link:hover svg,.text-link:focus-visible svg,.company-toggle:focus-visible svg,.document-link:focus-visible svg{color:var(--ic-orange)}
+.company-toggle svg,.document-link svg{transition:color .25s ease}
+.company-toggle:focus-visible,.text-link:focus-visible,.document-link:focus-visible{outline:2px solid var(--ic-orange);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.company-toggle::after,.document-link::after{transition:none}}
+
+/* ---------- contact form copy ---------- */
+.contact-form .form-intro{margin:-6px 0 2px;font-size:15px;line-height:22px;color:#626D7A}
+.contact-form .form-consent{font-size:13px;line-height:20px;color:#626D7A;max-width:none}
+.contact-form .form-consent a{color:var(--ic-blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .25s ease}
+.contact-form .form-consent a:hover,.contact-form .form-consent a:focus-visible{color:var(--ic-orange)}
+.contact-form .submit-row{margin-top:2px}
+.contact-form .submit-row .btn{flex:none}
+
+/* ---------- footer ---------- */
+@media(min-width:901px){
+#footer{padding-top:64px;padding-bottom:29px}
+#footer .footer-bottom{padding-top:22px}
+}
+
+/* ---------- mobile (as in the 360 mockup) ---------- */
+@media(max-width:600px){
+:root{--text-h2:28px}
+h2,.section-heading h2{font-size:28px;line-height:31px}
+#news .ic-track>*{flex-basis:92%!important}
+.news-card>.photo{height:165px}
+#news .news-content{padding:20px 14px;gap:14px}
+#news .news-content h3{font-size:17px;line-height:22px}
+#news .news-content p{font-size:12.5px;line-height:18px}
+#news .news-read{font-size:14px}
+.ic-btns button{width:40px;height:40px}
+#about .about-actions{border-top:0}
+#about .about-text p.about-lead{font-size:20px;line-height:1.22}
+}
+@media(max-width:600px){
+#about .about-text p.about-lead{font-size:24px;line-height:1.2}
+#news .news-content{padding:20px 14px 24px;gap:22px}
+#news .news-content h3{font-size:18px;line-height:23px}
+#news .news-content p{font-size:12px;line-height:18px}
+}
+@media(max-width:600px){
+#news,#about,#certs,#custom,#apps,#tech,#series,#nature{padding-top:52px}
+#tech .section-heading{gap:12px}
+#tech .section-heading>p{max-width:240px}
+#contact{padding-top:45px;padding-bottom:72px}
+#footer{padding-top:40px}
+#footer .footer-brand{margin-bottom:47px}
+#footer .footer-bottom{padding-top:28px}
+#footer{padding-bottom:58px}
+.process-step>.chips-p,.process-step .chips-p{margin-left:0}
+}
+@media(max-width:600px){
+#series .section-heading{margin-bottom:0}
+}

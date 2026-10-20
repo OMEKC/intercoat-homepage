@@ -1,0 +1,119 @@
+/* Intercoat shared UI: dot map, contact popup, accordion stability. Font: Aeonik Pro only. */
+:root{--ic-blue:#1D3B7B;--ic-orange:#D75C32;--ic-navy:#0F1F38;--ic-white:#FEFEFE;--ic-r:0px;--ic-ease:cubic-bezier(.16,1,.3,1)}
+[hidden]{display:none!important}
+
+/* ---------- Dot map ---------- */
+.dot-map{--map-dot:var(--ic-blue);--map-grey:#C9CDD3;--map-core:var(--ic-blue);--map-hq:var(--ic-orange);--map-label:var(--ic-blue);--map-label-on:var(--ic-navy);--map-rgb:29,59,123;position:relative;width:85.2%;margin-left:auto;margin-right:auto;aspect-ratio:854/682;font-family:"Aeonik Pro";container-type:inline-size;container-name:icmap}
+.dot-map .map-dots{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dot-map .map-dots .g1{fill:var(--map-grey);fill-opacity:.55}
+.dot-map .map-dots .g2{fill:var(--map-grey);fill-opacity:.8}
+.dot-map .map-dots .b1{fill:var(--map-dot);fill-opacity:.17}
+.dot-map .map-dots .b2{fill:var(--map-dot);fill-opacity:.25}
+.dot-map .map-dots .b3{fill:var(--map-dot);fill-opacity:.32}
+.dot-map .mk{position:absolute;width:32px;height:32px;padding:0;margin:-16px 0 0 -16px;border:0;background:none;cursor:pointer;z-index:2;outline:0;font:inherit}
+.dot-map .mk .pt{position:absolute;left:50%;top:50%;width:0;height:0;display:block}
+.dot-map .mk .halo{position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;
+  background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.78) 0,rgba(255,255,255,.28) 58%,rgba(255,255,255,.12) 100%);
+  -webkit-backdrop-filter:blur(2.5px) saturate(1.35);backdrop-filter:blur(2.5px) saturate(1.35);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.8),inset 0 3px 6px rgba(255,255,255,.85),inset 0 -5px 9px rgba(var(--map-rgb),.13),0 4px 12px rgba(var(--map-rgb),.16);
+  transition:transform .28s var(--ic-ease),box-shadow .28s var(--ic-ease)}
+.dot-map .mk .halo::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 200deg,rgba(255,255,255,.95),rgba(255,255,255,0) 22%,rgba(var(--map-rgb),.16) 48%,rgba(255,255,255,0) 62%,rgba(255,255,255,.95));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 2px));opacity:.9}
+.dot-map .mk .core{position:absolute;left:-5.5px;top:-5.5px;width:11px;height:11px;border-radius:50%;background:var(--map-core);transition:transform .28s var(--ic-ease)}
+.dot-map .mk.hq .core{background:var(--map-hq)}
+.dot-map .mk .lbl{position:absolute;white-space:nowrap;font-size:12px;line-height:15px;color:var(--map-label);pointer-events:none;transition:color .2s ease,opacity .2s ease}
+.dot-map .mk .lbl .sub{display:none;font-size:12px;color:var(--ic-orange);margin-left:6px}
+.dot-map .mk.is-active .halo,.dot-map .mk:focus-visible .halo{transform:scale(1.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),inset 0 3px 6px rgba(255,255,255,.9),inset 0 -5px 9px rgba(var(--map-rgb),.18),0 6px 18px rgba(var(--map-rgb),.22)}
+.dot-map .mk.is-active .core{transform:scale(1.12)}
+.dot-map .mk.is-active .lbl{color:var(--map-label-on)}
+.dot-map .mk.hq.is-active .lbl .sub{display:inline}
+.dot-map.has-active .mk:not(.is-active) .lbl{opacity:.5}
+.dot-map .mk.is-active{z-index:3}
+@container icmap (max-width:476px){
+  .dot-map .mk .lbl{display:none}
+  .dot-map .mk.is-active .lbl{display:block;font-size:13px;line-height:16px;background:none}
+  .dot-map .mk.is-active.p-ne .lbl,.dot-map .mk.is-active.p-e .lbl,.dot-map .mk.is-active.p-se .lbl{left:12px;right:auto;top:auto;bottom:12px}
+  .dot-map .mk.is-active.p-sw .lbl,.dot-map .mk.is-active.p-w .lbl,.dot-map .mk.is-active.p-nw .lbl{right:12px;left:auto;top:auto;bottom:12px}
+  .dot-map .mk.is-active .lbl .sub{display:block;margin:0}
+  .dot-map .mk .halo{left:-10px;top:-10px;width:20px;height:20px}
+  .dot-map .mk .core{left:-4px;top:-4px;width:8px;height:8px}
+  .dot-map .mk{width:28px;height:28px;margin:-14px 0 0 -14px}
+}
+
+/* label placement chosen so that no labels collide at map widths from ~560px */
+.dot-map .p-ne .lbl{left:12px;bottom:11px}
+.dot-map .p-e .lbl{left:15px;top:-7.5px}
+.dot-map .p-se .lbl{left:12px;top:11px}
+.dot-map .p-sw .lbl{right:12px;top:11px}
+.dot-map .p-w .lbl{right:15px;top:-7.5px}
+.dot-map .p-nw .lbl{right:12px;bottom:11px}
+/* ---------- Contact popup ---------- */
+body.ic-lock{overflow:hidden}
+.ic-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;font-family:"Aeonik Pro"}
+.ic-modal[hidden]{display:none!important}
+.ic-ov{position:absolute;inset:0;background:rgba(15,31,56,.58);animation:ic-fade .18s ease both}
+.ic-box{position:relative;width:100%;max-width:640px;max-height:calc(100dvh - 48px);overflow:auto;background:var(--ic-white);color:var(--ic-navy);padding:48px;border-radius:var(--ic-r);box-shadow:0 30px 80px rgba(15,31,56,.28);animation:ic-in .22s var(--ic-ease) both;outline:0}
+.ic-x{position:absolute;top:12px;right:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--ic-navy);background:none;border:0;border-radius:var(--ic-r);cursor:pointer;transition:background .18s ease,color .18s ease;z-index:2}
+.ic-x:hover{background:rgba(15,31,56,.07)}
+.ic-x:focus-visible{outline:2px solid var(--ic-blue);outline-offset:2px}
+.ic-x svg{width:18px;height:18px;display:block}
+.ic-pane .contact-form,.ic-pane .form{width:100%!important;max-width:none;padding:0!important;margin:0;background:none!important;border:0!important;box-shadow:none!important;flex:none;gap:24px}
+.ic-pane h3{font-size:30px;line-height:34px;letter-spacing:-.02em;font-weight:400;margin:0 0 4px;padding-right:48px;color:var(--ic-navy)}
+.ic-pane .field.is-error{border-bottom-color:var(--ic-orange)!important}
+.ic-err{display:block;font-size:12px;line-height:16px;color:var(--ic-orange);margin-top:6px}
+.ic-pane .consent.is-error span{color:var(--ic-orange)}
+.ic-thanks{display:flex;flex-direction:column;gap:20px;align-items:flex-start;padding:24px 0 8px}
+.ic-thanks .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ic-orange)}
+.ic-thanks h3{font-size:40px;line-height:44px;padding:0;margin:0}
+.ic-thanks p{font-size:17px;line-height:26px;color:#4a5568;max-width:44ch}
+.ic-done{display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;background:var(--ic-blue);color:#fff;border:0;border-radius:var(--ic-r);font:inherit;font-size:15px;cursor:pointer;transition:background .18s ease}
+.ic-done:hover{background:var(--ic-navy)}
+.ic-done:focus-visible{outline:2px solid var(--ic-orange);outline-offset:3px}
+@keyframes ic-fade{from{opacity:0}to{opacity:1}}
+@keyframes ic-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.ic-modal{padding:0;align-items:flex-end}.ic-box{max-width:none;max-height:92dvh;padding:56px 20px 28px}.ic-pane h3{font-size:24px;line-height:28px}.ic-pane .form-row,.ic-pane .fr{flex-direction:column;gap:20px}.ic-thanks h3{font-size:32px;line-height:36px}}
+@media(prefers-reduced-motion:reduce){.ic-ov,.ic-box{animation:none}}
+
+/* ---------- Concept 1: triangles unfold once from their corner ---------- */
+html.ic-tri-motion .tri{transform:scale(0);transition:transform .8s var(--ic-ease)}
+html.ic-tri-motion .tri.is-in{transform:scale(1)}
+/* no moving arrows on hover (brief) */
+a:hover svg,button:hover svg,a:focus-visible svg,.btn:hover svg,.arr,.arrow{transform:none!important}
+
+/* ---------- Checkbox: custom, square (concept 2 overrides to a circle with a dot) ---------- */
+.consent input[type=checkbox]{-webkit-appearance:none;appearance:none;width:20px;height:20px;flex:none;margin:1px 0 0;padding:0;border:1px solid #6E7681;background:var(--ic-white) center/14px 14px no-repeat;border-radius:var(--ic-cb-r,0);cursor:pointer;transition:background-color .18s ease,border-color .18s ease}
+.consent input[type=checkbox]:hover{border-color:var(--ic-blue)}
+.consent input[type=checkbox]:focus-visible{outline:2px solid var(--ic-blue);outline-offset:2px}
+.consent input[type=checkbox]:checked{background-color:var(--ic-blue);border-color:var(--ic-blue);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.4l2.9 2.9 6-6.2' fill='none' stroke='%23FEFEFE' stroke-width='1.6'/%3E%3C/svg%3E")}
+.consent.is-error input[type=checkbox]{border-color:var(--ic-orange)}
+
+/* ---------- News slider: finite, arrows left / right, no autoplay ---------- */
+.ic-slider{--g:24px;--per:3;display:flex;flex-direction:column;gap:32px;min-width:0;width:100%}
+.ic-viewport{overflow:hidden;width:100%;touch-action:pan-y}
+.ic-track{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:var(--g)!important;align-items:stretch;transition:transform .55s var(--ic-ease)}
+.ic-track>*{flex:0 0 calc((100% - var(--g)*(var(--per) - 1))/var(--per))!important;min-width:0}
+.ic-controls{display:flex;align-items:center;justify-content:space-between;gap:32px;width:100%}
+.ic-prog{display:flex;align-items:center;gap:20px;flex:1;max-width:440px;font-size:13px;line-height:16px;letter-spacing:.08em;color:#6E7681;font-variant-numeric:tabular-nums}
+.ic-count{flex:none;min-width:92px}
+.ic-bar{position:relative;display:block;flex:1;height:1px;background:rgba(15,31,56,.2)}
+.ic-bar b{position:absolute;left:0;top:-1px;height:3px;width:30%;background:var(--ic-navy);transition:left .55s var(--ic-ease),width .55s var(--ic-ease)}
+.ic-btns{display:flex;gap:8px;flex:none}
+.ic-btns button{width:52px;height:52px;padding:0;border:1px solid rgba(15,31,56,.35);background:transparent;color:var(--ic-navy);border-radius:var(--ic-btn-r,0);display:flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;transition:background-color .2s ease,color .2s ease,border-color .2s ease,opacity .2s ease}
+.ic-btns button:hover:not(:disabled){background:var(--ic-navy);color:var(--ic-white);border-color:var(--ic-navy)}
+.ic-btns button:focus-visible{outline:2px solid var(--ic-blue);outline-offset:2px}
+.ic-btns button:disabled{opacity:.3;cursor:default}
+.ic-btns svg{width:22px;height:16px;display:block;transform:none!important}
+@media(max-width:900px){.ic-slider{--per:2}}
+@media(max-width:600px){.ic-slider{--per:1;--g:12px}.ic-track>*{flex-basis:86%!important}.ic-btns button{width:46px;height:46px}.ic-prog{gap:14px}.ic-count{min-width:70px}}
+@media(prefers-reduced-motion:reduce){.ic-track,.ic-bar b{transition:none}}
+
+/* ---------- Secondary links (lead to other pages): quiet at rest, underline sweeps on hover ---------- */
+.text-link,.lnk{position:relative;cursor:pointer;transition:color .25s ease}
+.text-link{border-bottom:1px solid color-mix(in srgb,currentColor 38%,transparent);padding-bottom:6px;min-height:0}
+.text-link::after,.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--ic-orange);transform:scaleX(0);transform-origin:left center;transition:transform .35s var(--ic-ease)}
+.text-link:hover::after,.text-link:focus-visible::after,.lnk:hover::after,.lnk:focus-visible::after{transform:scaleX(1)}
+.text-link:hover,.lnk:hover{text-decoration:none}
+.text-link:hover .arr,.text-link:hover svg,.lnk:hover svg{color:var(--ic-orange)}
+.text-link .arr,.text-link svg,.lnk svg{transition:color .25s ease}
+@media (prefers-reduced-motion:reduce){.text-link::after,.lnk::after{transition:none}}

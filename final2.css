@@ -1,0 +1,48 @@
+/* Concept V2 — final adjustments on top of the approved dark concept. Font: Aeonik Pro only. */
+/* 02 About the Company: heading across the top, photo and text column side by side, actions pinned to the photo's bottom edge */
+#about .about-intro{margin-bottom:56px}
+#about .about-heading{flex:none;max-width:900px;gap:28px}
+#about .presence{align-items:stretch;gap:64px}
+#about .company-visual{flex:1.25;width:auto;min-height:520px;max-height:none}
+#about .company-side{flex:1;min-width:0;border-top:0;padding-top:0;justify-content:space-between;gap:40px;align-self:stretch}
+#about .about-copy{gap:0}
+#about .about-text{padding:0;flex:none;gap:24px}
+#about .about-text p{font-size:17px;line-height:27px;color:#3B4249}
+#about .about-text p.about-lead{font-size:clamp(24px,2.1vw,31px);line-height:1.22;letter-spacing:-.022em;color:var(--ink)}
+#about .about-actions{gap:0;border-top:1px solid var(--blue)}
+#about .about-actions>*{align-self:stretch;justify-content:space-between;min-height:64px;border-bottom:1px solid var(--line);font-size:16px}
+#about .about-actions .text-link{gap:16px}
+/* 03 Certified quality: TDS and SDS side by side */
+#certs .quality-bottom{display:block;margin-top:24px}
+#certs .document-links{width:100%;flex-direction:row;gap:32px}
+#certs .document-link{flex:1;min-width:0;border-bottom:1px solid var(--line)}
+/* 08 Sustainability: statement first, two short columns, streams as tags, closing statement in a navy panel */
+#nature .nature-layout{align-items:stretch;gap:72px}
+#nature .nature-image{width:40%;height:auto;min-height:680px}
+#nature .nature-copy{gap:32px;justify-content:flex-start}
+#nature .nature-lead{font-size:clamp(26px,2.4vw,35px);line-height:1.18;letter-spacing:-.025em;color:var(--ink);max-width:680px}
+#nature .nature-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+#nature .nature-cols p{font-size:16px;line-height:25px;color:#3B4249;border-top:2px solid var(--blue);padding-top:16px}
+#nature .streams-title{margin-top:8px;opacity:1;color:var(--mute);font-size:14px}
+#nature .nature-materials{gap:8px;margin-top:-16px}
+#nature .nature-materials>span{flex:none;padding:8px 14px;border:1px solid #AEBDB5;background:#F7FAF8;color:var(--ink);font-size:14px;line-height:22px}
+#nature .nature-panel{margin-top:auto;background:var(--navy);padding:32px 36px;gap:20px}
+#nature .nature-panel .nature-note{color:#FEFEFE!important;font-size:clamp(20px,1.7vw,25px)!important;line-height:1.28!important;max-width:620px}
+#nature .nature-panel .text-link{color:#FEFEFE;margin:0}
+#nature .nature-panel .text-link:hover{color:var(--pale-blue)}
+/* 09 Contacts: square panel, form as agreed (square corners, uppercase labels, wide button) */
+#contact .contact-panel{align-items:stretch;gap:96px}
+#contact .contact-copy{justify-content:flex-start}
+#contact .contact-details{margin-top:auto;padding-top:32px}
+#contact .contact-form{flex:1;width:auto;min-width:0;gap:26px}
+.contact-form .field>span{text-transform:uppercase;letter-spacing:.08em;font-size:11px;line-height:16px;color:var(--mute)}
+.contact-form .field input::placeholder,.contact-form .field textarea::placeholder{color:#9AA3AD}
+.contact-form .field textarea{height:48px}
+.submit-row{align-items:center;gap:24px;margin-top:4px}
+.submit-row .btn{width:46%;min-width:240px;flex:none;border-radius:0}
+.submit-row .consent{flex:1;align-items:center}
+.submit-row .consent span{font-size:12px}
+.form-caption{margin-top:-10px}
+@media(max-width:1250px){#nature .nature-layout{gap:40px}#contact .contact-panel{gap:48px}}
+@media(max-width:900px){#about .presence{gap:28px}#about .company-visual{min-height:0}#nature .nature-image{width:100%;min-height:0;height:320px}#nature .nature-layout{gap:32px}}
+@media(max-width:600px){#about .about-intro{margin-bottom:32px}#nature .nature-cols{grid-template-columns:1fr;gap:20px}#nature .nature-panel{padding:24px}#certs .document-links{flex-direction:column;gap:0}.submit-row{flex-direction:column;align-items:stretch;gap:20px}.submit-row .btn{width:100%;min-width:0}#contact .contact-details{padding-top:0}}
