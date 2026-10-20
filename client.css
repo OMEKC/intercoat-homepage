@@ -23,7 +23,9 @@
 .news-card>.photo{height:192px}
 #news .news-content{padding:28px 24px;gap:20px}
 #news .news-content h3{font-size:20px;line-height:27px}
-#news .news-read{margin-top:0}
+#news .news-card,#news .news-content{display:flex;flex-direction:column}
+#news .news-content{flex:1}
+#news .news-read{margin-top:auto}
 .ic-track{transition:transform .8s cubic-bezier(.33,1,.68,1)}
 .ic-bar b{transition:none}
 @media(prefers-reduced-motion:reduce){.ic-track{transition:none}}
